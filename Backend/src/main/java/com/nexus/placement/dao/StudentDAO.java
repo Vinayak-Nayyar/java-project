@@ -1,11 +1,12 @@
 package com.nexus.placement.dao;
 
 import com.nexus.placement.model.Student;
-import java.util.List;
+// import java.util.List;
 
 /**
  * Data Access Object interface for Student entity operations.
- * Extends GenericDAO to provide standard CRUD and specialized academic profile lookups.
+ * Extends GenericDAO to provide standard CRUD and specialized academic profile
+ * lookups.
  */
 public interface StudentDAO extends GenericDAO<Student, Integer> {
 

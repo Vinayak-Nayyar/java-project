@@ -2,7 +2,7 @@ package com.nexus.placement.dao;
 
 import com.nexus.placement.model.Student;
 import com.nexus.placement.util.AppLogger;
-import com.nexus.placement.util.DBConnection;
+// import com.nexus.placement.util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +10,8 @@ import java.util.List;
 
 /**
  * JDBC implementation of StudentDAO extending AbstractGenericDAO.
- * Ensures consistent source of truth across users, students, and student_skills tables.
+ * Ensures consistent source of truth across users, students, and student_skills
+ * tables.
  */
 public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> implements StudentDAO {
     private final SkillDAO skillDAO = new SkillDAOImpl();
@@ -44,8 +45,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
         return s;
     }
 
-    private static final String BASE_STUDENT_QUERY =
-            "SELECT s.id AS student_id, s.user_id, u.name, u.email, s.roll_number, s.branch, " +
+    private static final String BASE_STUDENT_QUERY = "SELECT s.id AS student_id, s.user_id, u.name, u.email, s.roll_number, s.branch, "
+            +
             "s.cgpa, s.graduation_year, s.phone, s.resume_url, " +
             "COALESCE(s.college, 'National Institute of Technology, Karnataka') AS college, " +
             "COALESCE(s.degree, 'Bachelor of Technology (B.Tech)') AS degree, " +
@@ -59,8 +60,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
         String sql = BASE_STUDENT_QUERY + "ORDER BY s.id ASC";
 
         try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Student s = mapRow(rs);
@@ -80,7 +81,7 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
         String sql = BASE_STUDENT_QUERY + "WHERE s.id = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+                PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, studentId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -103,7 +104,7 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
         String sql = BASE_STUDENT_QUERY + "WHERE s.user_id = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+                PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -125,8 +126,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
     public Integer save(Student student) {
         String insertUserSql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'STUDENT')";
         String insertStudentSql = "INSERT INTO students (user_id, roll_number, branch, cgpa, graduation_year, " +
-                                  "phone, resume_url, college, degree, location) " +
-                                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "phone, resume_url, college, degree, location) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection()) {
             conn.setAutoCommit(false);
@@ -134,7 +135,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
                 int userId = student.getId();
                 // If user doesn't already exist, create user record first
                 if (userId <= 0) {
-                    try (PreparedStatement psUser = conn.prepareStatement(insertUserSql, Statement.RETURN_GENERATED_KEYS)) {
+                    try (PreparedStatement psUser = conn.prepareStatement(insertUserSql,
+                            Statement.RETURN_GENERATED_KEYS)) {
                         psUser.setString(1, student.getName());
                         psUser.setString(2, student.getEmail());
                         psUser.setString(3, student.getPassword() != null ? student.getPassword() : "Student@123");
@@ -149,7 +151,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
                 }
 
                 int studentId = -1;
-                try (PreparedStatement psStudent = conn.prepareStatement(insertStudentSql, Statement.RETURN_GENERATED_KEYS)) {
+                try (PreparedStatement psStudent = conn.prepareStatement(insertStudentSql,
+                        Statement.RETURN_GENERATED_KEYS)) {
                     psStudent.setInt(1, userId);
                     psStudent.setString(2, student.getRollNumber());
                     psStudent.setString(3, student.getBranch());
@@ -157,9 +160,12 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
                     psStudent.setInt(5, student.getGraduationYear());
                     psStudent.setString(6, student.getPhone());
                     psStudent.setString(7, student.getResumeUrl());
-                    psStudent.setString(8, student.getCollege() != null ? student.getCollege() : "National Institute of Technology, Karnataka");
-                    psStudent.setString(9, student.getDegree() != null ? student.getDegree() : "Bachelor of Technology (B.Tech)");
-                    psStudent.setString(10, student.getLocation() != null ? student.getLocation() : "Bengaluru, Karnataka");
+                    psStudent.setString(8, student.getCollege() != null ? student.getCollege()
+                            : "National Institute of Technology, Karnataka");
+                    psStudent.setString(9,
+                            student.getDegree() != null ? student.getDegree() : "Bachelor of Technology (B.Tech)");
+                    psStudent.setString(10,
+                            student.getLocation() != null ? student.getLocation() : "Bengaluru, Karnataka");
 
                     psStudent.executeUpdate();
                     try (ResultSet sKeys = psStudent.getGeneratedKeys()) {
@@ -177,7 +183,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
                     skillDAO.syncStudentSkills(studentId, student.getSkills());
                 }
 
-                AppLogger.info("[StudentDAO] Created student successfully (StudentID: " + studentId + ", UserID: " + userId + ")");
+                AppLogger.info("[StudentDAO] Created student successfully (StudentID: " + studentId + ", UserID: "
+                        + userId + ")");
                 return studentId;
             } catch (SQLException e) {
                 conn.rollback();
@@ -200,8 +207,8 @@ public class StudentDAOImpl extends AbstractGenericDAO<Student, Integer> impleme
     @Override
     public boolean updateAcademicProfile(Student student) {
         String updateStudentsSql = "UPDATE students SET branch = ?, cgpa = ?, graduation_year = ?, " +
-                                  "phone = ?, college = ?, degree = ?, location = ?, resume_url = ? " +
-                                  "WHERE user_id = ?";
+                "phone = ?, college = ?, degree = ?, location = ?, resume_url = ? " +
+                "WHERE user_id = ?";
 
         String updateUsersSql = "UPDATE users SET name = ? WHERE id = ?";
 

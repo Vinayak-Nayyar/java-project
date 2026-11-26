@@ -1,7 +1,7 @@
 package com.nexus.placement.dao;
 
 import com.nexus.placement.model.Company;
-import java.util.List;
+// import java.util.List;
 
 /**
  * Data Access Object interface for Company entity operations.
