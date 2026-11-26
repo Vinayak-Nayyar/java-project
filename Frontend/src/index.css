@@ -1,0 +1,415 @@
+/* ============================================================
+   NEXUS Placement Portal Custom Stylesheet
+   Color Palette Inspired by Design Mockup:
+   - Deep Forest Green: #0F4A37 (Brand, Headings, Accents)
+   - Buttercup Pastel Yellow: #FEE054 (Primary Highlights, Badges)
+   - Soft Lilac / Lavender: #DDD6FE (Secondary Cards, Status)
+   - Crisp Charcoal / Dark Outline: #1E293B
+   - Off-White Background: #FBFBF9
+   ============================================================ */
+
+:root {
+  --nexus-green: #0F4A37;
+  --nexus-green-dark: #0a3527;
+  --nexus-green-light: #e6f3ee;
+  --nexus-yellow: #FEE054;
+  --nexus-yellow-hover: #fcd32b;
+  --nexus-yellow-light: #fef8d3;
+  --nexus-lilac: #DDD6FE;
+  --nexus-lilac-dark: #7C3AED;
+  --nexus-lilac-light: #F3E8FF;
+  --nexus-dark: #1E293B;
+  --nexus-gray-bg: #F8FAF7;
+  --nexus-border: #1E293B;
+  --nexus-border-light: #E2E8F0;
+  --nexus-card-shadow: 4px 4px 0px #1E293B;
+  --nexus-card-shadow-sm: 2px 2px 0px #1E293B;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--nexus-gray-bg);
+  color: #1E293B;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Neo-editorial Pill Buttons */
+.nexus-btn-primary {
+  background-color: var(--nexus-yellow);
+  color: #1E293B;
+  border: 2px solid var(--nexus-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 0.6rem 1.6rem;
+  box-shadow: var(--nexus-card-shadow-sm);
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nexus-btn-primary:hover {
+  background-color: var(--nexus-yellow-hover);
+  color: #1E293B;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--nexus-card-shadow);
+}
+
+.nexus-btn-primary:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.nexus-btn-lilac {
+  background-color: var(--nexus-lilac);
+  color: #1E293B;
+  border: 2px solid var(--nexus-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 0.6rem 1.6rem;
+  box-shadow: var(--nexus-card-shadow-sm);
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nexus-btn-lilac:hover {
+  background-color: #c7bbfd;
+  color: #1E293B;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--nexus-card-shadow);
+}
+
+.nexus-btn-outline {
+  background-color: transparent;
+  color: var(--nexus-dark);
+  border: 2px solid var(--nexus-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 0.55rem 1.4rem;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nexus-btn-outline:hover {
+  background-color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--nexus-card-shadow-sm);
+  color: var(--nexus-green);
+}
+
+.nexus-btn-green {
+  background-color: var(--nexus-green);
+  color: #FFFFFF;
+  border: 2px solid var(--nexus-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  padding: 0.6rem 1.6rem;
+  box-shadow: var(--nexus-card-shadow-sm);
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nexus-btn-green:hover {
+  background-color: var(--nexus-green-dark);
+  color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--nexus-card-shadow);
+}
+
+/* Styled Neo-Card */
+.nexus-card {
+  background: #FFFFFF;
+  border: 2px solid var(--nexus-border);
+  border-radius: 18px;
+  box-shadow: var(--nexus-card-shadow);
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.nexus-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+.nexus-card-yellow {
+  background: var(--nexus-yellow);
+  border: 2px solid var(--nexus-border);
+  border-radius: 18px;
+  box-shadow: var(--nexus-card-shadow);
+}
+
+.nexus-card-lilac {
+  background: var(--nexus-lilac);
+  border: 2px solid var(--nexus-border);
+  border-radius: 18px;
+  box-shadow: var(--nexus-card-shadow);
+}
+
+.nexus-card-green {
+  background: var(--nexus-green);
+  color: #FFFFFF;
+  border: 2px solid var(--nexus-border);
+  border-radius: 18px;
+  box-shadow: var(--nexus-card-shadow);
+}
+
+/* ============================================================
+   GLOBAL CAPSULE / BADGE BASE RULES
+   Ensures single-line display, centered content, and proper scaling
+   ============================================================ */
+.badge-pill,
+.badge-pill-green,
+.badge-pill-yellow,
+.badge-pill-lilac,
+.badge-pill-red,
+.badge-pill-blue,
+.badge-pill-dark,
+.nexus-badge,
+.badge {
+  white-space: nowrap !important;
+  width: fit-content !important;
+  max-width: none !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  min-height: 28px;
+  padding: 0.4rem 0.9rem;
+  letter-spacing: 0.2px;
+}
+
+.badge-pill-green {
+  background-color: var(--nexus-green-light);
+  color: var(--nexus-green);
+  border: 1.5px solid var(--nexus-green);
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.badge-pill-yellow {
+  background-color: var(--nexus-yellow-light);
+  color: #854d0e;
+  border: 1.5px solid var(--nexus-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.badge-pill-lilac {
+  background-color: var(--nexus-lilac-light);
+  color: var(--nexus-lilac-dark);
+  border: 1.5px solid #a78bfa;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.badge-pill-red {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1.5px solid #f87171;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.badge-pill-blue {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1.5px solid #38bdf8;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.badge-pill-dark {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border: 1.5px solid #64748b;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+/* Table cell alignment to keep badges centered with row content */
+
+  .table th,
+  .table td {
+    vertical-align: middle !important;
+  }
+
+  .table td.cell-nowrap {
+    white-space: nowrap !important;
+  }
+
+  .hover-dark {
+    transition: color 0.15s ease;
+  }
+
+  .hover-dark:hover {
+    color: var(--nexus-green) !important;
+    text-decoration: underline !important;
+  }
+
+  /* Form Inputs */
+  .nexus-input {
+    border: 2px solid var(--nexus-border);
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .nexus-input:focus {
+    border-color: var(--nexus-green);
+    box-shadow: 0 0 0 3px rgba(15, 74, 55, 0.15);
+    outline: none;
+  }
+
+  /* Navbar */
+  .nexus-navbar {
+    background: #FFFFFF;
+    border-bottom: 2px solid var(--nexus-border);
+  }
+
+  .brand-text {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--nexus-green);
+    font-size: 1.4rem;
+  }
+
+  /* ============================================================
+   RESPONSIVE OVERFLOW & LAYOUT INTEGRITY RULES
+   ============================================================ */
+  .row>* {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .nexus-card,
+  .nexus-card-yellow,
+  .nexus-card-lilac,
+  .nexus-card-green {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Text and link overflow prevention */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a,
+  td,
+  th {
+    overflow-wrap: break-word;
+  }
+
+  .text-break-word {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* Responsive Images, SVGs and Canvas */
+  img,
+  svg,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Table scroll wrapper */
+  .table-responsive {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Modal Dialog Responsiveness */
+  .modal-dialog {
+    max-width: min(94vw, 580px);
+    margin: 1.5rem auto;
+  }
+
+  /* ============================================================
+   CIRCULAR MATCH RATING & SCORE INDICATOR COMPONENT
+   Guarantees zero text clipping and proper scaling
+   ============================================================ */
+  .nexus-score-circle {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+    border-radius: 50% !important;
+    border: 3px solid var(--nexus-border) !important;
+    box-shadow: 3px 3px 0px #1E293B !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    padding: 10px 14px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto;
+  }
+
+  .nexus-score-circle .circle-value {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    color: #1E293B !important;
+    letter-spacing: -0.5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .nexus-score-circle .circle-label {
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    color: #475569 !important;
+    line-height: 1.1 !important;
+    margin-top: 5px !important;
+    max-width: 85% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
